@@ -23,7 +23,7 @@ public class Area_Length_Util {
 
         double bufferDistanceInMeters = 1;
         GeometryJSON gjson = new GeometryJSON();
-        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_POLYGON));
+        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_LINESTRING));
         // does not make any difference
         geometry.setSRID(4326);
 
@@ -47,8 +47,8 @@ public class Area_Length_Util {
         Geometry geometryInMeters = JTS.transform(geometry, transform);
 
         System.out.println("*****************************************");
-        System.out.println("Geometry Updated Area = " + geometryInMeters.getArea());
-        System.out.println("Geometry Updated Length = " + geometryInMeters.getLength());
+        System.out.println("Geometry Updated Area = " + String.format("%.12f",geometryInMeters.getArea()));
+        System.out.println("Geometry Updated Length = " + String.format("%.12f", geometryInMeters.getLength()));
         System.out.println("Geometry Updated Dimension = " + geometryInMeters.getDimension());
 
     }
@@ -59,4 +59,5 @@ public class Area_Length_Util {
         int utmZone =  (int) ((longitude + 180) / 6) + 1;
         return EPSG_PREFIX + EPSG_PREFIXCODE + String.format("%02d", utmZone);
     }
+
 }
