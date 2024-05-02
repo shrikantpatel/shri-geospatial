@@ -2,9 +2,16 @@ package com.shri.geospatial;
 
 public class Constant {
 
+    final static String GEO_JSON_POINT = """
+            { "type": "Point", "coordinates": [                                              -100,
+                                                                                             40.17377948939199] }
+            """;
 
     final static String GEO_JSON_LINESTRING = """
-            {"type": "LineString","coordinates": [[30.0, 10.0],[10.0, 30.0]]}
+            {
+                "type": "LineString",
+                "coordinates": [ [-73.801174, 40.7587], [-73.801775, 40.753873] ]
+            }
             """;
 
     final static String GEO_JSON_LINESTRING_SAL = """

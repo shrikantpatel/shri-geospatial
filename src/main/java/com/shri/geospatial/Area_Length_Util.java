@@ -13,7 +13,7 @@ import org.locationtech.jts.geom.Geometry;
 import java.io.IOException;
 import java.io.StringReader;
 
-public class Buffer_Util {
+public class Area_Length_Util {
 
     static final String EPSG_PREFIX= "EPSG:";
     static final String EPSG_PREFIXCODE = "326"; // For northern hemisphere. Use "327" for southern hemisphere
@@ -23,18 +23,18 @@ public class Buffer_Util {
 
         double bufferDistanceInMeters = 1;
         GeometryJSON gjson = new GeometryJSON();
-        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_POINT));
+        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_POLYGON));
         // does not make any difference
         geometry.setSRID(4326);
 
         String epsgCode = getEPSGCodeForUTMZone(geometry);
+        System.out.println(gjson.toString(geometry));
         System.out.println("Target EPSG Code : " + epsgCode);
+        System.out.println("*****************************************");
+        System.out.println("Geometry 4326 Area = " + geometry.getArea());
+        System.out.println("Geometry 4326 Length = " + geometry.getLength());
+        System.out.println("Geometry 4326 Dimension = " + geometry.getDimension());
 
-        System.out.println("Original Geometry type : " + geometry.getGeometryType());
-        System.out.println("Original Geometry : " + gjson.toString(geometry));
-        double bufferDistanceInDegrees = bufferDistanceInMeters / METER_TO_DEGREE_CONVERSION_FACTOR;
-        Geometry bufferedGeometry = geometry.buffer(bufferDistanceInDegrees);
-        System.out.println("Buffered Geometry using Simple factoring  : " + gjson.toString(bufferedGeometry));
 
         // Transform the geometry to a different CRS
         CoordinateReferenceSystem sourceCRS = CRS.decode("EPSG:4326", true);
@@ -46,15 +46,10 @@ public class Buffer_Util {
         // Transform the geometry to the target CRS
         Geometry geometryInMeters = JTS.transform(geometry, transform);
 
-        // Buffer the geometry (in meters)
-        Geometry bufferedGeometryInMeters = geometryInMeters.buffer(bufferDistanceInMeters);
-
-        // If needed, transform the buffered geometry back to the original CRS
-        MathTransform inverseTransform = transform.inverse();
-        bufferedGeometry = JTS.transform(bufferedGeometryInMeters, inverseTransform);
-
-        System.out.println("Original Geometry : " + gjson.toString(geometry));
-        System.out.println("Buffered Geometry using CRS Conversion : " + gjson.toString(bufferedGeometry));
+        System.out.println("*****************************************");
+        System.out.println("Geometry Updated Area = " + geometryInMeters.getArea());
+        System.out.println("Geometry Updated Length = " + geometryInMeters.getLength());
+        System.out.println("Geometry Updated Dimension = " + geometryInMeters.getDimension());
 
     }
 
