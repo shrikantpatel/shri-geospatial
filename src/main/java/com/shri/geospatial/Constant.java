@@ -35,6 +35,62 @@ public class Constant {
             }
             """;
 
+    final static String GEO_JSON_MULTIPOINT = """
+            {
+                "type": "MultiPoint",
+                    "coordinates": [
+                [10.0, 40.0],
+                [40.0, 30.0],
+                [20.0, 20.0],
+                [30.0, 10.0]
+            ]
+            }
+            """;
+
+    final static String GEO_JSON_MULTILINESTRING = """
+            {
+                "type": "MultiLineString",\s
+                "coordinates": [
+                    [
+                        [10.0, 10.0],
+                        [20.0, 20.0],
+                        [10.0, 40.0]
+                    ],
+                    [
+                        [40.0, 40.0],
+                        [30.0, 30.0],
+                        [40.0, 20.0],
+                        [30.0, 10.0]
+                    ]
+                ]
+            }
+            """;
+
+    final static String GEO_JSON_MULTILINEPOLYGON = """
+            {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [30.0, 20.0],
+                            [45.0, 40.0],
+                            [10.0, 40.0],
+                            [30.0, 20.0]
+                        ]
+                    ],
+                    [
+                        [
+                            [15.0, 5.0],
+                            [40.0, 10.0],
+                            [10.0, 20.0],
+                            [5.0, 10.0],
+                            [15.0, 5.0]
+                        ]
+                    ]
+                ]
+            }
+            """;
+
     final static String GEO_JSON_POLYGON_US_BORDER_4326 = """
             {
                     "type": "Polygon"

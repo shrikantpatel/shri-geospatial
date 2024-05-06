@@ -23,7 +23,7 @@ public class Area_Length_Util {
 
         double bufferDistanceInMeters = 1;
         GeometryJSON gjson = new GeometryJSON();
-        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_LINESTRING));
+        Geometry geometry = gjson.read(new StringReader(Constant.GEO_JSON_MULTILINEPOLYGON));
         // does not make any difference
         geometry.setSRID(4326);
 
