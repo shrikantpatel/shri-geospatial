@@ -7,6 +7,8 @@ public class Constant {
                                                                                              40.17377948939199] }
             """;
 
+    final static String WKT_POINT = "POINT (30 10)";
+
     final static String GEO_JSON_LINESTRING = """
             {
                 "type": "LineString",
