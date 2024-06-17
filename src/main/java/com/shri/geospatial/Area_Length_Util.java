@@ -10,6 +10,8 @@ import org.geotools.referencing.CRS;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
+import javax.measure.Measure;
+import javax.measure.unit.SI;
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -48,6 +50,7 @@ public class Area_Length_Util {
 
         System.out.println("*****************************************");
         System.out.println("Geometry Updated Area = " + String.format("%.12f",geometryInMeters.getArea()));
+        System.out.println("Geometry Updated Area = " + Measure.valueOf(geometryInMeters.getArea(), SI.SQUARE_METRE));
         System.out.println("Geometry Updated Length = " + String.format("%.12f", geometryInMeters.getLength()));
         System.out.println("Geometry Updated Dimension = " + geometryInMeters.getDimension());
 
